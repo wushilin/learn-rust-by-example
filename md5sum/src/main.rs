@@ -29,6 +29,7 @@ fn check_sum(file:&String) -> String{
             break;
         }
     }
+    drop(f);
     let result_str = hasher.result_str();
     return result_str;
 }
