@@ -16,10 +16,8 @@ fn main() {
     println!("JSON Encoded:");
     println!("{}", serde_json.as_str().unwrap());
     let mut copy = cargo_toml.clone();
-    let out = copy.as_table_mut().unwrap();
-    let  devdep = out.get_mut("dev-dependencies").unwrap();
-    let  unwrapped =devdep.as_table_mut().unwrap();
-    unwrapped.insert("new-key".to_string(), toml::Value::String("4.888".to_string()));
+    let target_node = copy.as_table_mut().unwrap().get_mut("dev-dependencies").unwrap().as_table_mut().unwrap();
+    target_node.insert("new-key".to_string(), toml::Value::String("4.888".to_string()));
 
     fs::write("output_out.toml", copy.to_string()).expect("Could not write to output.toml");
 }
